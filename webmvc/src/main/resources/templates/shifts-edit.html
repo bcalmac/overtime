@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shift Submission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="card">
+    <div class="card-body">
+        <form action="/shifts/submit" th:object="${shift}" method="post">
+            <div class="row">
+                <div class="form-group col">
+                    <label class="col-form-label" for="date">Date</label>
+                    <input id="date" class="form-control" type="text" th:field="*{date}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">input error</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="col-form-label" for="scheduledHours">Scheduled</label>
+                    <input id="scheduledHours" class="form-control" type="text" th:field="*{scheduledHours}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('scheduledHours')}"
+                          th:errors="*{scheduledHours}">input error</span>
+                </div>
+                <div class="form-group col">
+                    <label class="col-form-label" for="extraHours">Extra</label>
+                    <input id="extraHours" class="form-control" type="text" th:field="*{extraHours}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('extraHours')}" th:errors="*{extraHours}">input error</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="col-form-label" for="patients">Patients</label>
+                    <input id="patients" class="form-control" type="text" th:field="*{patients}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('patients')}" th:errors="*{patients}">input error</span>
+                </div>
+                <div class="form-group col">
+                    <label class="col-form-label" for="icuPatients">ICU Patients</label>
+                    <input id="icuPatients" class="form-control" type="text" th:field="*{icuPatients}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('icuPatients')}" th:errors="*{icuPatients}">input error</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="col-form-label" for="admissions">Admissions</label>
+                    <input id="admissions" class="form-control" type="text" th:field="*{admissions}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('admissions')}" th:errors="*{admissions}">input error</span>
+                </div>
+                <div class="form-group col">
+                    <label class="col-form-label" for="discharges">Discharges</label>
+                    <input id="discharges" class="form-control" type="text" th:field="*{discharges}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('discharges')}" th:errors="*{discharges}">input error</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label class="col-form-label" for="notes">Notes</label>
+                    <textarea id="notes" class="form-control" rows="5" th:field="*{notes}"></textarea>
+                    <span class="text-danger" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}">input error</span>
+                </div>
+            </div>
+            <p class="text-center">
+                <input class="btn btn-primary" type="submit" value="Submit"/>
+            </p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

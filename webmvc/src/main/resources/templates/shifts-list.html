@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shift Submission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div class="card">
+    <div class="card-body align-self-center">
+        <p class="text-center"><a class="btn btn-primary" th:href="@{/shifts/new}">New Shift</a></p>
+        <table class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Hours</th>
+                    <th>Patients</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shift : ${shifts}">
+                <td ><a th:href="@{/shifts/edit/{date}(date=${shift.dateAsIso})}" th:text="${shift.dateAsShort}">01/23</a></td>
+                <td th:text="${shift.hoursSummary}">10</td>
+                <td th:text="${shift.patientsSummary}">2</td>
+                <td><a th:href="@{/shifts/delete/{date}(date=${shift.dateAsIso})}">X</a></td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

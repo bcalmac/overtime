@@ -1,0 +1,42 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1" author="bcalmac">
+        <comment>Initial schema including a "shift" table</comment>
+
+        <createTable tableName="shift"
+                     remarks="daily info about shifts and census">
+            <column name="date" type="date" defaultValueComputed="current_date"
+                    remarks="date of the shift. For night shifts, the date when the shift started.">
+                <constraints primaryKey="true" primaryKeyName="shift_pk"/>
+            </column>
+            <column name="scheduled_hours" type="decimal(4,2)" defaultValueNumeric="0"
+                    remarks="official duration of the shift">
+                <constraints nullable="false"/>
+            </column>
+            <column name="extra_hours" type="decimal(4,2)" defaultValueNumeric="0"
+                    remarks="overtime for this shift. This does not include meetings and other non-patient activities.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patients" type="smallint" defaultValueNumeric="0"
+                    remarks="number of patients at the beginning of the shift. For night shifts, the number of patients that required non-trivial attention.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="admissions" type="smallint" defaultValueNumeric="0"
+                    remarks="number of patients admitted during the shift">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discharges" type="smallint" defaultValueNumeric="0"
+                    remarks="number of patients discharged during the shift">
+                <constraints nullable="false"/>
+            </column>
+            <column name="icu_patients" type="smallint" defaultValueNumeric="0"
+                    remarks="number of patients in ICU. They are also counted under patients.">
+                <constraints nullable="false"/>
+            </column>
+            <column name="notes" type="text" defaultValueNumeric="0"
+                    remarks="Free-text notes about the shift"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

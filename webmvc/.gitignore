@@ -1,0 +1,3 @@
+/target/
+/liquibase.properties
+/*.iml
