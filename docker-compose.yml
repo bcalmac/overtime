@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  service:
+    build:
+      context: webmvc
+    ports:
+      - 1710:8080
+  db:
+    image: postgres:12.1-alpine
+    ports:
+      - 1720:5432
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
